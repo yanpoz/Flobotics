@@ -12,7 +12,7 @@ def fetch_json(url) -> dict:
         return {'error': 'err'} #TODO
 
 
-def find_node_by_value(data: dict, key: str, value: str) -> dict|None:
+def find_node_by_value(data: dict, key: str, value: str) -> dict[str, str]|None:
     if isinstance(data, dict):
         # Check if the current dictionary has the "name" field
         if data.get(key) == value:
@@ -45,8 +45,10 @@ def get_stocks_from_api(url: str, companies: list[dict[str,str]]) -> list[dict]|
     filtered_stocks = []
     for company in companies:
         stock = find_node_by_value(all_stocks, 'tidm', company['stock code'])
-        localized_time = datetime.now().astimezone(time_zone).strftime("%y.%m.%d %H:%M:%S %Z")
+        if not stock: continue #TODO
 
+        localized_time = datetime.now().astimezone(time_zone).strftime("%y.%m.%d %H:%M:%S %Z")
         company['timestamp'] = localized_time
+        company['value'] = stock['lastprice']
         filtered_stocks.append(stock)
     return filtered_stocks

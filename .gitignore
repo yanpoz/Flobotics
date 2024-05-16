@@ -1,6 +1,7 @@
 **venv
 **.json
 **.html
+**.csv
 
 .DS_Store
 .huskyrc.json
