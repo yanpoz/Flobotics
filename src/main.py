@@ -1,5 +1,6 @@
 from csv_parser import get_companies_from_csv
 from api_parser import get_data_from_api
+from printer import print_as_table
 
 
 def main():
@@ -13,7 +14,7 @@ def main():
         print(f"Company Name: {item['name']}, Stock Code: {item['code']}")
     
     res = get_data_from_api(data_api_url, companies)
-    print(res)
+    print_as_table(res)
 
 
 
