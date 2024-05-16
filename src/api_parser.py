@@ -1,5 +1,4 @@
 import requests
-from jsonpath_ng import parse
 
 
 def fetch_json(url) -> dict:
@@ -11,7 +10,7 @@ def fetch_json(url) -> dict:
         return {'error': 'err'} #TODO
 
 
-def find_node_by_value(data, key, value):
+def find_node_by_value(data: dict, key: str, value: str) -> dict|None:
     if isinstance(data, dict):
         # Check if the current dictionary has the "name" field
         if data.get(key) == value:
@@ -34,7 +33,16 @@ def find_node_by_value(data, key, value):
 
 def get_data_from_api(url: str, companies):
     json_data = fetch_json(url)
-    stock_list = find_node_by_value(json_data, 'name', 'indexrisersfallersleaders')
-    # indexrisersfallersleaders = json_data['components'][2]['content'][1]
+    all_stocks = find_node_by_value(json_data, 'name', 'ftseindextickers')
+    if not all_stocks: return None  #TODO
 
-    return 'no'
+    filtered_stocks = []
+    for company in companies:
+        stock = find_node_by_value(all_stocks, 'tidm', company['code'])
+        filtered_stocks.append(stock)
+
+
+    # filtered_stocks = [find_node_by_value(all_stocks, 'tidm', company['code']) for company in companies]
+
+
+    return filtered_stocks

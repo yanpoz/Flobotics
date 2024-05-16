@@ -1,5 +1,5 @@
-from src.csv_parser import get_companies_from_csv
-from src.api_parser import get_data_from_api
+from csv_parser import get_companies_from_csv
+from api_parser import get_data_from_api
 
 
 def main():
