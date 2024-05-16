@@ -1,23 +1,20 @@
 from csv_parser import get_companies_from_csv
-from api_parser import get_data_from_api
+from api_parser import get_stocks_from_api
 from printer import print_as_table
 
 
 def main():
     companies_csv_path = 'input.csv'
-    data_api_url = 'https://api.londonstockexchange.com/api/v1/pages?path=home'
-
+    api_url = 'https://api.londonstockexchange.com/api/v1/pages?path=home'
+    html_url= 'https://www.londonstockexchange.com/stock/'
 
     companies = get_companies_from_csv(companies_csv_path)
 
-    for item in companies:
-        print(f"Company Name: {item['name']}, Stock Code: {item['code']}")
+    stocks = get_stocks_from_api(api_url, companies)
     
-    res = get_data_from_api(data_api_url, companies)
-    
-    if not res: return 1 #TODO
+    if not stocks: return 1 #TODO
 
-    print_as_table(res)
+    print_as_table(stocks)
 
 
 
