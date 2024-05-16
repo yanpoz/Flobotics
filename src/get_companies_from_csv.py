@@ -11,8 +11,3 @@ def get_companies_from_csv(filename) -> list[dict[str,str]]:
       company['code'] = row['stock code']
       company_list.append(company)
     return company_list
-
-# Example usage
-res = get_companies_from_csv("input.csv")
-for item in res:
-  print(f"Company Name: {item['name']}, Stock Code: {item['code']}")
