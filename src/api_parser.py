@@ -31,18 +31,18 @@ def find_node_by_value(data: dict, key: str, value: str) -> dict|None:
     return None
 
 
-def get_stocks_from_api(url: str, companies) -> list[dict]|None:
+def get_stocks_from_api(url: str, company_codes: list[str]) -> list[dict]|None:
     json_data = fetch_json(url)
     all_stocks = find_node_by_value(json_data, 'name', 'ftseindextickers')
     if not all_stocks: return None  #TODO
 
     filtered_stocks = []
-    for company in companies:
-        stock = find_node_by_value(all_stocks, 'tidm', company['code'])
+    for company_code in company_codes:
+        stock = find_node_by_value(all_stocks, 'tidm', company_code)
         filtered_stocks.append(stock)
 
 
-    # filtered_stocks = [find_node_by_value(all_stocks, 'tidm', company['code']) for company in companies]
+    # filtered_stocks = [find_node_by_value(all_stocks, 'tidm', company_code) for company in companies]
 
 
     return filtered_stocks
