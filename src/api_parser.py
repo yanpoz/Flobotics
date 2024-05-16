@@ -31,7 +31,7 @@ def find_node_by_value(data: dict, key: str, value: str) -> dict|None:
     return None
 
 
-def get_data_from_api(url: str, companies):
+def get_data_from_api(url: str, companies) -> list[dict]|None:
     json_data = fetch_json(url)
     all_stocks = find_node_by_value(json_data, 'name', 'ftseindextickers')
     if not all_stocks: return None  #TODO

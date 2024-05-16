@@ -14,6 +14,9 @@ def main():
         print(f"Company Name: {item['name']}, Stock Code: {item['code']}")
     
     res = get_data_from_api(data_api_url, companies)
+    
+    if not res: return 1 #TODO
+
     print_as_table(res)
 
 
