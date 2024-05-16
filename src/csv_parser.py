@@ -7,7 +7,7 @@ def get_companies_from_csv(file_path: str) -> list[dict[str,str]]:
     company_list = []
     for row in reader:
       company = {}
-      company['name'] = row['company name']
-      company['code'] = row['stock code']
+      company['company name'] = row['company name']
+      company['stock code'] = row['stock code']
       company_list.append(company)
     return company_list

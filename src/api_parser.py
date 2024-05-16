@@ -38,6 +38,6 @@ def get_stocks_from_api(url: str, companies: list[dict[str,str]]) -> list[dict]|
 
     filtered_stocks = []
     for company in companies:
-        stock = find_node_by_value(all_stocks, 'tidm', company['code'])
+        stock = find_node_by_value(all_stocks, 'tidm', company['stock code'])
         filtered_stocks.append(stock)
     return filtered_stocks

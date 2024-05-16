@@ -3,8 +3,8 @@ import requests_html
 
 def build_urls(domain: str, companies: list[dict[str,str]]):
     for company in companies:
-        company_code = company['code'].upper()
-        company_name = company['name'].lower().replace(' ', '-')
+        company_code = company['stock code'].upper()
+        company_name = company['company name'].lower().replace(' ', '-')
         url = domain + '/stock/' + company_code + '/' + company_name + '/company-page'
         yield url
 
