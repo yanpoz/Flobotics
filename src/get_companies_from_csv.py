@@ -1,6 +1,6 @@
 import csv
 
-def parse_csv(filename) -> list[dict[str,str]]:
+def get_companies_from_csv(filename) -> list[dict[str,str]]:
   with open(filename, 'r', newline='') as csvfile:
     reader = csv.DictReader(csvfile)
 
@@ -13,6 +13,6 @@ def parse_csv(filename) -> list[dict[str,str]]:
     return company_list
 
 # Example usage
-res = parse_csv("input.csv")
+res = get_companies_from_csv("input.csv")
 for item in res:
   print(f"Company Name: {item['name']}, Stock Code: {item['code']}")
