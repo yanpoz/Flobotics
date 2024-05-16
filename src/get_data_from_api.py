@@ -1,15 +1,17 @@
 import requests
+from jsonpath_ng import parse
 
-def get_data_from_api(url: str):
-    # Send a GET request to the URL
+
+def fetch_json(url):
     response = requests.get(url)
-
-    # Check if the request was successful
     if response.status_code == 200:
-        # Parse the JSON data
-        data = response.json()
-        
-        # Access the data using dictionary-like syntax
-        print(data["key"])  # Replace "key" with the actual key in the JSON
+        return response.json()
     else:
-        print("Error: Could not retrieve data")
+        print("Failed to fetch JSON from URL:", url)
+        return None
+    
+
+def get_data_from_api(url: str, companies):
+    json_data = fetch_json(url)
+    node = find_node_by_name(json_data, "indexrisersfallersleaders")
+    return node
