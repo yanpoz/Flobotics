@@ -11,14 +11,23 @@ def main():
     html_url= 'https://www.londonstockexchange.com'
 
 
-    companies = read_companies_from_csv(csv_input_path)
+    try:
+        companies = read_companies_from_csv(csv_input_path)    
 
-    get_stocks_from_api(api_url, companies)
-    save_companies_as_csv(csv_api_output_path, companies)
+        try: 
+            get_stocks_from_api(api_url, companies)
+            save_companies_as_csv(csv_api_output_path, companies)
+        except Exception as e:
+            print(f"Error with API parsing: {e}")
 
-    get_stocks_from_html(html_url, companies)
-    save_companies_as_csv(csv_html_output_path, companies)
-    return 0
+        try:
+            get_stocks_from_html(html_url, companies)
+            save_companies_as_csv(csv_html_output_path, companies)
+        except Exception as e:
+            print(f"Error with HTML parsing: {e}")
+
+    except Exception as e:
+        print(f"Error with input CSV file: {e}")
 
 
 if __name__ == '__main__': 
