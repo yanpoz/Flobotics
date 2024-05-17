@@ -1,6 +1,6 @@
 import csv
 
-def get_companies_from_csv(file_path: str) -> list[dict[str,str]]:
+def read_companies_from_csv(file_path: str) -> list[dict[str,str]]:
 	with open(file_path, 'r', newline='') as csvfile:
 		reader = csv.DictReader(csvfile)
 
