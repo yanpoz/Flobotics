@@ -25,6 +25,8 @@ def get_stocks_from_html(domain: str, companies: list[dict[str,str]]):
         response = get_rendered_page(build_url(domain, company))        
 
         timestamp = response.html.find('span.refreshed-time', first=True)
-        price_tag = response.html.find('span.price-tag', first=True)
+        price_tag = response.html.find('span.govno', first=True)
+        if not (timestamp and price_tag): 
+            raise ValueError('Element not found on page')
         company['timestamp'] = timestamp.full_text
         company['value'] = price_tag.full_text

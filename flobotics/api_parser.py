@@ -31,12 +31,14 @@ def find_node_by_value(data: dict, key: str, value: str) -> dict[str, str]|None:
 def get_stocks_from_api(url: str, companies: list[dict[str,str]]):
     json_data = fetch_json(url)
     all_stocks = find_node_by_value(json_data, 'name', 'ftseindextickers')
-    if not all_stocks: return None  #TODO
+    if not all_stocks: 
+        raise ValueError('Stocks not found in JSON')
 
     time_zone = timezone('Europe/London')
     for company in companies:
         stock = find_node_by_value(all_stocks, 'tidm', company['stock code'])
-        if not stock: continue #TODO
+        if not stock: 
+            raise ValueError('Stock not found in stocks')
 
         localized_time = datetime.now().astimezone(time_zone).strftime("%y.%m.%d %H:%M:%S %Z")
         company['timestamp'] = localized_time
