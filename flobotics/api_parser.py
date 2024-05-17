@@ -14,17 +14,14 @@ def fetch_json(url) -> dict:
 
 def find_node_by_value(data: dict, key: str, value: str) -> dict[str, str]|None:
     if isinstance(data, dict):
-        # Check if the current dictionary has the "name" field
         if data.get(key) == value:
             return data
-        # Recursively search nested dictionaries
         for item in data.values():
             result = find_node_by_value(item, key, value)
             if result is not None:
                 return result
             
     if isinstance(data, list):
-        # Recursively search elements in a list
         for item in data:
             result = find_node_by_value(item, key, value)
             if result is not None:
