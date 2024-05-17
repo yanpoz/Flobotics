@@ -6,7 +6,8 @@ from printer import print_as_table
 
 def main():
     companies_csv_input_path = 'input.csv'
-    companies_csv_output_path = 'api_output.csv'
+    companies_csv_api_output_path = 'api_output.csv'
+    companies_csv_html_output_path = 'html_output.csv'
     api_url = 'https://api.londonstockexchange.com/api/v1/pages?path=home'
     html_url= 'https://www.londonstockexchange.com'
 
@@ -15,12 +16,11 @@ def main():
     # stocks = get_stocks_from_api(api_url, companies)
     # if not stocks: return 1 #TODO
     # print_as_table(stocks)
-    # save_companies_as_csv(companies_csv_output_path, companies)
-
-
+    # save_companies_as_csv(companies_csv_api_output_path, companies)
 
 
     stocks = get_stocks_from_html(html_url, companies)
+    save_companies_as_csv(companies_csv_html_output_path, companies)
     return 0
 
 

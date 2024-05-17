@@ -25,6 +25,8 @@ def get_stocks_from_html(domain: str, companies: list[dict[str,str]]):
         # Extract titles using CSS selector
         timestamp = response.html.find('span.refreshed-time', first=True)
         price_tag = response.html.find('span.price-tag', first=True)
+        company['timestamp'] = timestamp.full_text
+        company['value'] = price_tag.full_text
         print(timestamp.full_text, price_tag.full_text)
 
     pass
