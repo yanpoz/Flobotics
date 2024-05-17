@@ -12,16 +12,15 @@ def main():
 
     companies = get_companies_from_csv(companies_csv_input_path)
 
-    stocks = get_stocks_from_api(api_url, companies)
-    # get_values_from_stocks(stocks)
-    if not stocks: return 1 #TODO
-    print_as_table(stocks)
-    save_companies_as_csv(companies_csv_output_path, companies)
+    # stocks = get_stocks_from_api(api_url, companies)
+    # if not stocks: return 1 #TODO
+    # print_as_table(stocks)
+    # save_companies_as_csv(companies_csv_output_path, companies)
 
 
 
 
-    # stocks = get_stocks_from_html(html_url, companies)
+    stocks = get_stocks_from_html(html_url, companies)
     return 0
 
 
