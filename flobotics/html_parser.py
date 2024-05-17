@@ -13,6 +13,8 @@ def get_rendered_page(url: str) -> Response:
     session = HTMLSession()
     headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
     response = session.get(url, headers=headers)
+    if response.status_code != 200:
+        raise requests.ConnectionError
     response.html.render(sleep=1, keep_page=True, scrolldown=1)
     # TODO async
     return response

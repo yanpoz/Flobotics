@@ -1,15 +1,13 @@
 from datetime import datetime
 import requests
-from pytz import timezone, all_timezones
+from pytz import timezone
 
 
 def fetch_json(url) -> dict:
     response = requests.get(url)
-    if response.status_code == 200:
-        return response.json()
-    else:
-        print("Failed to fetch JSON from URL:", url)
-        return {'error': 'err'} #TODO
+    if response.status_code != 200:
+        raise requests.ConnectionError
+    return response.json() 
 
 
 def find_node_by_value(data: dict, key: str, value: str) -> dict[str, str]|None:
