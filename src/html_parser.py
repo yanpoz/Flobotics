@@ -28,5 +28,3 @@ def get_stocks_from_html(domain: str, companies: list[dict[str,str]]):
         company['timestamp'] = timestamp.full_text
         company['value'] = price_tag.full_text
         print(timestamp.full_text, price_tag.full_text)
-
-    pass

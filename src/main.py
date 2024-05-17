@@ -1,7 +1,6 @@
 from csv_io import get_companies_from_csv, save_companies_as_csv
 from api_parser import get_stocks_from_api
 from html_parser import get_stocks_from_html
-from printer import print_as_table
 
 
 def main():
@@ -13,14 +12,12 @@ def main():
 
     companies = get_companies_from_csv(companies_csv_input_path)
 
-    # stocks = get_stocks_from_api(api_url, companies)
-    # if not stocks: return 1 #TODO
-    # print_as_table(stocks)
-    # save_companies_as_csv(companies_csv_api_output_path, companies)
+    get_stocks_from_api(api_url, companies)
+    save_companies_as_csv(companies_csv_api_output_path, companies)
 
 
-    stocks = get_stocks_from_html(html_url, companies)
-    save_companies_as_csv(companies_csv_html_output_path, companies)
+    # get_stocks_from_html(html_url, companies)
+    # save_companies_as_csv(companies_csv_html_output_path, companies)
     return 0
 
 
